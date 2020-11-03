@@ -1,0 +1,3 @@
+Driver Loaded..
+uConnecting to the Database... jdbc:mysql://localhost:3306/payroll_service?allowPublicKeyRetrieval=true&useSSL=false
+Connection was successful !!

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="testEmpPayRoll" tests="1" skipped="0" failures="0" errors="0" timestamp="2020-11-03T07:13:39" hostname="DESKTOP-7FT5EBS" time="0.484">
+  <properties/>
+  <testcase name="onUpdation_compareEmpPayrollObjectWithDB" classname="testEmpPayRoll" time="0.484"/>
+  <system-out><![CDATA[Driver Loaded..
+Connecting to the Database... jdbc:mysql://localhost:3306/payroll_service?allowPublicKeyRetrieval=true&useSSL=false
+Connection was successful !!
+]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>
