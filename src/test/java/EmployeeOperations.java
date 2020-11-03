@@ -8,4 +8,13 @@ public class EmployeeOperations {
             }
         }
     }
+
+    public Emp_info getEmployeeDataFromObject(String name){
+        Emp_info emp = null;
+        for(Emp_info e: EmpUpdate.employee_list){
+            if(e.getName().equals(name))
+                emp = e;
+        }
+        return emp;
+    }
 }

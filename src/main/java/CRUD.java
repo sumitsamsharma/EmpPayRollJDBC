@@ -1,12 +1,13 @@
 import java.sql.Connection;
+import java.sql.SQLException;
 import java.util.List;
 
 public interface CRUD {
-    public List<Emp_info> readData(Connection connection) throws CustomException;
+    public List<Emp_info> readData() throws CustomException, SQLException;
 
     public void insertData();
 
-    public void updateData(Connection connection, String column, String name, String value) throws CustomException;
+    public void updateData(String column, String name, String value) throws CustomException, SQLException;
 
     public void deleteData();
 }
@@ -26,7 +27,7 @@ class EmployeePayrollServiceMain {
 
         // UC2- retrieve emp data from database
         EmpUpdate emp_op = new EmpUpdate();
-        emp_op.readData(con);
+        emp_op.readData();
     }
 }
 
