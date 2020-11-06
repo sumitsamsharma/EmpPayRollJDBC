@@ -1,110 +1,63 @@
-import java.sql.*;
-import java.util.ArrayList;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.Statement;
 import java.util.Date;
-import java.util.List;
 
-class EmpUpdate implements CRUD
-{
-    static List<Emp_info> employee_list = new ArrayList<>();
-    private PreparedStatement p_stmt;
-    private static EmpUpdate emp_DBO;
-    public EmpUpdate(){
-    }
-    public static EmpUpdate getInstance(){
-        if(emp_DBO == null)
-            emp_DBO = new EmpUpdate();
-        return emp_DBO;
-    }
+class EmpUpdate implements CRUD{
+    Statement statement=null;
+    public static void main(String[] args) {
+        JDBCdemo connection = new JDBCdemo();
+        Connection con = connection.getConnection();
 
-    @Override
-    public List<Emp_info> readData() throws CustomException,SQLException {
-        JDBCdemo jdbc_con = new JDBCdemo();
-        Connection con = jdbc_con.getConnection();
-        try{
-            String query = "Select * from emppayroll";
+        try {
+
+            String sql = "SELECT * from employee_payroll;";
             Statement stmt = con.createStatement();
-            ResultSet rs = stmt.executeQuery(query);
-            while (rs.next()){
+            int i = stmt.executeUpdate("insert into employee_payroll (id,name,phone,address,department,gender,basic_pay,deductions,taxable_pay,income_tax,net_pay,start)" +
+                    "values ('Bill','8123714400','Haryana','Tech','M',150000.0,10000,25000,7000,120000,'2018-03-01'),");
+            ResultSet rs = stmt.executeQuery(sql);
+            while(rs.next()){
                 int id = rs.getInt("id");
-                String name = rs.getString("Name");
-                String phone = rs.getString("phone_no");
-                String address = rs.getString("Address");
-                String department = rs.getString("Department");
+                String name = rs.getString("name");
+                String phone = rs.getString("phone");
+                double deductions = rs.getInt("deductions");
+                double tax_pay = rs.getInt("taxable_pay");
+                double income_tax = rs.getInt("income_tax");
+                double net_pay = rs.getInt("net_pay");
+                String address = rs.getString("address");
+                String department = rs.getString("department");
                 Date start = rs.getDate("start");
-                char gender = rs.getString("gender").charAt(0);
-                double salary = rs.getDouble("salary");
-                Emp_info emp = new Emp_info(id,name,phone,address,department,gender,salary,start);
-                this.employee_list.add(emp);
+                Character gender = (Character) rs.getObject("gender");
+                double basic_pay = rs.getDouble("basic_pay");
+                System.out.println(id + "," + name + "," + phone + "," + address + "," + "," +
+                        department + "," + basic_pay + "," + deductions + "," + net_pay + "," + start);
             }
-        }catch(Exception e){
-            throw new CustomException("Read Process Unsuccessful");
-        }finally {
-            con.close();
+            con.commit();
+
         }
-        return employee_list;
-    }
-
-    @Override
-    public void insertData() { }
-
-    @Override
-    public void updateData(String column, String name, String value) throws CustomException, SQLException {
-        JDBCdemo jdbc_con = new JDBCdemo();
-        Connection con = jdbc_con.getConnection();
-        try{
-
-            p_stmt = con.prepareStatement("Update employee set salary = ? where name = ?");
-            p_stmt.setDouble(1,Double.parseDouble(value));
-            p_stmt.setString(2,name);
-            p_stmt.executeUpdate();
-        }catch(Exception e){
-            throw new CustomException("Read Process Unsuccessful");
-        }finally {
-            if(con != null)
-                con.close();
-        }
-    }
-
-    @Override
-    public void deleteData() { }
-
-    public ResultSet getEmployeeDataFromDB(String query) {
-        ResultSet rs = null;
-        Connection con = null;
-        try{
-            JDBCdemo jdbc_con = new JDBCdemo();
-            con = jdbc_con.getConnection();
-            Statement stmt = con.createStatement();
-            rs = stmt.executeQuery(query);
-        } catch (SQLException e) {
+        catch(Exception e) {
             e.printStackTrace();
         }
-        return rs;
     }
 
-    public Emp_info getPayrollDataByName(String name) throws SQLException {
-        JDBCdemo jdbc_con = new JDBCdemo();
-        Connection con = jdbc_con.getConnection();
-        p_stmt = con.prepareStatement("Select * from payroll where name = ?");
-        p_stmt.setString(1,name);
-        ResultSet rs = p_stmt.executeQuery();
-        Emp_info emp = null;
-        while(rs.next()){
-            int id = rs.getInt("id");
-            String phone = rs.getString("phone_no");
-            String address = rs.getString("Address");
-            String department = rs.getString("Department");
-            Date start = rs.getDate("start");
-            char gender = rs.getString("gender").charAt(0);
-            double salary = rs.getDouble("salary");
-            emp = new Emp_info(id,name,phone,address,department,gender,salary,start);
-        }
-        return emp;
+    @Override
+    public void create(String s) {
+
     }
 
-    public ResultSet retrieveEmployeesByDate(String startDate, String endDate){
-        String query = "Select * from emppayroll where start date between " + startDate + " and " + endDate;
-        ResultSet rs = this.getEmployeeDataFromDB(query);
-        return rs;
+    @Override
+    public void update(String s) {
+
+    }
+
+    @Override
+    public void delete(String s) {
+
+    }
+
+    @Override
+    public void select(String s) {
+
     }
 }

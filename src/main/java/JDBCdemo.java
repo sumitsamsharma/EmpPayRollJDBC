@@ -18,7 +18,8 @@ public class JDBCdemo {
             System.out.println("Connection was successful !!");
         }catch (ClassNotFoundException e) {
             throw new IllegalStateException("Cannot find the driver in the classpath", e);
-        }catch (Exception e) {
+        }catch (Exception e)
+        {
             e.printStackTrace();
         }
         return con;

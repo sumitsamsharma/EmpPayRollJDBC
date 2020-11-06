@@ -1,10 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="testEmpPayRoll" tests="1" skipped="0" failures="1" errors="0" timestamp="2020-11-03T11:10:50" hostname="DESKTOP-7FT5EBS" time="0.78">
+<testsuite name="testEmpPayRoll" tests="1" skipped="0" failures="1" errors="0" timestamp="2020-11-06T05:36:45" hostname="DESKTOP-7FT5EBS" time="0.558">
   <properties/>
-  <testcase name="onUpdation_compareEmpPayrollObjectWithDB" classname="testEmpPayRoll" time="0.78">
-    <failure message="CustomException: Read Process Unsuccessful" type="CustomException">CustomException: Read Process Unsuccessful
-	at EmpUpdate.updateData(EmpUpate.java:61)
-	at testEmpPayRoll.onUpdation_compareEmpPayrollObjectWithDB(testEmpPayRoll.java:29)
+  <testcase name="givenTable_shouldReturnSumOfSalary" classname="testEmpPayRoll" time="0.558">
+    <failure message="java.sql.SQLException: After end of result set" type="java.sql.SQLException">java.sql.SQLException: After end of result set
+	at com.mysql.jdbc.SQLError.createSQLException(SQLError.java:965)
+	at com.mysql.jdbc.SQLError.createSQLException(SQLError.java:898)
+	at com.mysql.jdbc.SQLError.createSQLException(SQLError.java:887)
+	at com.mysql.jdbc.SQLError.createSQLException(SQLError.java:861)
+	at com.mysql.jdbc.ResultSetImpl.checkRowPos(ResultSetImpl.java:790)
+	at com.mysql.jdbc.ResultSetImpl.getStringInternal(ResultSetImpl.java:5215)
+	at com.mysql.jdbc.ResultSetImpl.getString(ResultSetImpl.java:5138)
+	at com.mysql.jdbc.ResultSetImpl.getString(ResultSetImpl.java:5177)
+	at testEmpPayRoll.givenTable_shouldReturnSumOfSalary(testEmpPayRoll.java:82)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
 	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
@@ -13,7 +20,6 @@
 	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)
 	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:47)
 	at org.junit.internal.runners.statements.InvokeMethod.evaluate(InvokeMethod.java:17)
-	at org.junit.internal.runners.statements.RunBefores.evaluate(RunBefores.java:26)
 	at org.junit.runners.ParentRunner.runLeaf(ParentRunner.java:325)
 	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:78)
 	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:57)
@@ -56,9 +62,6 @@
 </failure>
   </testcase>
   <system-out><![CDATA[Driver Loaded..
-Connecting to the Database... jdbc:mysql://localhost:3306/payroll_service?allowPublicKeyRetrieval=true&useSSL=false
-Connection was successful !!
-Driver Loaded..
 Connecting to the Database... jdbc:mysql://localhost:3306/payroll_service?allowPublicKeyRetrieval=true&useSSL=false
 Connection was successful !!
 ]]></system-out>

@@ -52,12 +52,6 @@ public class Emp_info
 
     public void setDepartment(String department) { this.department = department;}
 
-    @Override
-    public String toString() {
-        return "Id: " + this.id + " | Name: " + this.name + " | Gender: " + this.gender + " | Salary: " + this.salary
-                + " | Date: " + this.date + " | Phone: " + this.phone + " | Address: " + this.address
-                + " | Department: " + this.department;
-    }
 }
 
 
